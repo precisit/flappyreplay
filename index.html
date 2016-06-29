@@ -1,0 +1,250 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Massive Multiplayer jumping-game, built in replays, high-score table and multiple levels.">
+    <meta property="og:image" content="representative2.jpg"/>
+    <meta name="author" content="Magnus Lundstedt">
+    <title>FlappyReplay</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <!-- Custom styles for this template -->
+    <link href="splashy-game.css" type="text/css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Freckle+Face' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+    <div class="wrapper">
+      <div class="container">
+      <div class="dummy"></div>
+        <div class="gameArea" tabindex="1">
+          <svg id="parallax" viewBox="0 0 1280 720" preserveAspectRatio="xMinYMin meet" gamelayer data-factor="0.5">
+            <defs>
+            <pattern id="tile" x="0" y="0" width="28" height="56"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="stripe_green.png" x="0" y="0" width="28" height="56" />
+            </pattern>
+            <pattern id="tileparal" x="0" y="-10" width="32" height="32"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="paral.png" x="0" y="0" width="32" height="32" />
+            </pattern>
+            <pattern id="tile_pillar" x="0" y="0" width="84" height="40"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="pillar.png" x="0" y="0" width="84" height="40" />
+            </pattern>
+            <pattern id="tile_pillar2" x="0" y="-9" width="84" height="42"
+                patternUnits="userSpaceOnUse" patternTransform="objectBoundingBox">
+            <image xlink:href="pillar2.png" x="0" y="0" width="84" height="42" />
+            </pattern>
+            <pattern id="tile_pillarTop" x="0" y="0" width="84" height="40"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="pillar_top.png" x="0" y="0" width="84" height="40" />
+            </pattern>
+            <pattern id="tile_pillarBottom" x="0" y="-9" width="84" height="42"
+                patternUnits="userSpaceOnUse" patternTransform="objectBoundingBox">
+            <image xlink:href="pillar_bottom.png" x="0" y="0" width="84" height="42" />
+            </pattern>
+            <pattern id="tile_floor" x="0" y="0" width="40" height="120"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="floor_brown.png" x="0" y="0" width="40" height="120" />
+            </pattern>
+            <pattern id="tile_grass" x="0" y="1" width="40" height="40"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="grass.png" x="0" y="0" width="40" height="40" />
+            </pattern>
+            <pattern id="sign_0" x="0" y="-31" width="64" height="128"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="sign_arrow_up.png" x="0" y="0" width="64" height="128" />
+            </pattern>
+            <pattern id="sign_1" x="0" y="-31" width="64" height="128"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="sign_arrow_down.png" x="0" y="0" width="64" height="128" />
+            </pattern>
+            <pattern id="sign_2" x="0" y="-31" width="64" height="128"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="sign_arrow_right.png" x="0" y="0" width="64" height="128" />
+            </pattern>
+            <pattern id="sign_3" x="0" y="-31" width="64" height="128"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="sign_warning.png" x="0" y="0" width="64" height="128" />
+            </pattern>
+            <pattern id="sign_4" x="0" y="-31" width="64" height="128"
+                patternUnits="userSpaceOnUse">
+            <image xlink:href="sign_question.png" x="0" y="0" width="64" height="128" />
+            </pattern>
+            </defs>
+          </svg>
+          <svg id="players" viewBox="0 0 1280 720" preserveAspectRatio="xMinYMin meet" gamelayer data-factor="1">
+            <rect type="" x='704' y='482' width='64' height='128' style="fill: url(#sign_2);"></rect>
+          </svg>
+          <svg id="objects" viewBox="0 0 1280 720" preserveAspectRatio="xMinYMin meet" gamelayer data-factor="1">
+            <rect type="enemy" x='0' y='600' width='100000' height='450' style="fill: url(#tile_floor);"></rect>
+            <rect x='0' y='590' width='100000' height='20' style="fill: url(#tile_grass);"></rect>
+            <rect type="enemy" x='100000' y='600' width='100000' height='450' style="fill: url(#tile_floor);"></rect>
+            <rect x='100000' y='590' width='100000' height='20' style="fill: url(#tile_grass);"></rect>
+          </svg>
+          <svg id="ui" viewBox="0 0 1280 720" preserveAspectRatio="xMinYMin meet">
+          </svg>
+          <svg id="ui2" viewBox="0 0 1280 720" preserveAspectRatio="xMinYMin meet">
+          </svg>
+          <div id="fps">0</div>
+          <div class="chatContainer"><div class="chatArea"></div></div>
+          </div>
+      </div>
+      <div id="lobby">
+        <input id="message" maxlength="256" placeholder="Log in to change nick, personalized replays/highscores and chat." autocomplete="off" disabled style="display: none">
+        <input id="nick" maxlength="16" placeholder="anon" value="anon" style="display: none">
+        <div style="float: right; display: inline-block; margin-right: 20px; margin-top: 2px; right: 0px; margin-left: 5px;">
+          <fb:login-button id="loginbtn" show-faces="false" width="200" max-rows="1"></fb:login-button>
+        </div>
+      </div>
+    </div>
+
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <!--GUI lib and network lib-->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://cdn.jsflow.com/jsFlow.js"></script>
+
+    <!-- Game logic -->
+    <script src="vec2-lib.js"></script>
+    <script src="splashy-game.js"></script>
+
+<!--    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-48576000-1', 'splashmmo.com');
+      ga('send', 'pageview');
+
+    </script>
+-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48576000-2', 'flappyreplay.com');
+  ga('send', 'pageview');
+
+</script>
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+
+  FB.init({
+    appId      : '295064910642454',
+    status     : true, // check login status
+    cookie     : true, // enable cookies to allow the server to access the session
+    xfbml      : true  // parse XFBML
+  });
+
+  // Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
+  // for any authentication related change, such as login, logout or session refresh. This means that
+  // whenever someone who was previously logged out tries to log in again, the correct case below 
+  // will be handled. 
+  FB.Event.subscribe('auth.authResponseChange', function(response) {
+
+    // Here we specify what we do with the response anytime this event occurs. 
+    if (response.status === 'connected') {
+      // The response object is returned with a status field that lets the app know the current
+      // login status of the person. In this case, we're handling the situation where they 
+      // have logged in to the app.
+      //testAPI();
+      $('#loginbtn').css('display', 'none');
+      $('#nick').css('display', 'inline');
+      $("#message").prop('disabled', false);
+      $("#message").attr('placeholder', 'Chat message');
+
+      window.signedRequest = response.authResponse.signedRequest;
+
+      //TODO: Remake to actually retrieving my current high score (TODO2: Move to main-code / redo when level changes)
+      //$.post( "http://backend.splashmmo.com:1337/fbLogin", response.authResponse.signedRequest, function( data ) {
+      //    console.log(data);
+      //  }, 'json');
+
+      Game.fb_uid = response.authResponse.userID;
+      $.get( "http://backend.splashmmo.com:1337/highscore/10000/" + response.authResponse.userID, function( data ) {
+          Game.personalHighscore = data;
+
+            if(localStorage.nick === undefined && Game.personalHighscore[0] !== undefined && Game.personalHighscore[0].pilot !== undefined && Game.personalHighscore[0].pilot !== '') {
+              $('input#nick').val(Game.personalHighscore[0].pilot);
+              jsFlow.messageChannel(Game.gameRoom, $('input#nick').val(), 'nick');
+            }
+            else if (localStorage.nick === undefined) {
+              FB.api('/me', function(response) {
+                $('input#nick').val(response.first_name);
+                jsFlow.messageChannel(Game.gameRoom, $('input#nick').val(), 'nick');
+              });
+            }
+        }, 'json');
+
+    } else if (response.status === 'not_authorized') {
+      // In this case, the person is logged into Facebook, but not into the app, so we call
+      // FB.login() to prompt them to do so. 
+      // In real-life usage, you wouldn't want to immediately prompt someone to login 
+      // like this, for two reasons:
+      // (1) JavaScript created popup windows are blocked by most browsers unless they 
+      // result from direct interaction from people using the app (such as a mouse click)
+      // (2) it is a bad experience to be continually prompted to login upon page load.
+      FB.login();
+    } else {
+      // In this case, the person is not logged into Facebook, so we call the login() 
+      // function to prompt them to do so. Note that at this stage there is no indication
+      // of whether they are logged into the app. If they aren't then they'll see the Login
+      // dialog right after they log in to Facebook. 
+      // The same caveats as above apply to the FB.login() call here.
+      FB.login();
+    }
+  });
+  };
+
+  // Load the SDK asynchronously
+  (function(d){
+   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement('script'); js.id = id; js.async = true;
+   js.src = "http://connect.facebook.net/en_US/all.js";
+   ref.parentNode.insertBefore(js, ref);
+   $('#message').css('display', 'inline'); 
+  }(document));
+
+  // Here we run a very simple test of the Graph API after login is successful. 
+  // This testAPI() function is only called in those cases. 
+  function reconfigure() {
+    $('#loginbtn').css('display', 'none');
+    $('#nick').css('display', 'inline');
+    $("#message").prop('disabled', false);
+    $("#message").attr('placeholder', 'Chat message');
+    /*
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Good to see you, ' + response.name + '.');
+      console.log(response);
+    });*/
+  }
+</script>
+
+</body></html>
+
+
+

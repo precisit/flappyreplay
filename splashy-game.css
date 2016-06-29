@@ -1,0 +1,225 @@
+body {
+	padding-top: 20px;
+  	padding-bottom: 20px;
+	font-family: arial, helvetica;
+	font-size: 12px;
+	margin: 0px;
+	color: #444;
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@font-face {
+font-family: "icomoon";
+src: url("icomoon.ttf");
+}
+
+.navbar {	
+  max-width: 960;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper {
+	max-width: 960px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.container {
+	width: 100%;
+	display: inline-block;
+	position: relative;
+}
+
+.dummy {
+    margin-top: 56.25%; /* 16:9; aspect ratio */
+}
+
+.gameArea {
+	border: 1px solid #292929;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 962px;
+    height: 542px;
+}
+
+div#lobby {
+	max-width: 960px;
+	width: 95%;
+	position: absolute;
+	top: 105%;
+	height: 50px;
+	padding-top: 14px;
+}
+
+.chatContainer {
+	position: absolute;
+	bottom: 2px;
+	right: 5;
+	left: 5;
+	top: 87%;
+}
+
+.chatArea {
+	color: white;
+	width: 98%;
+	max-height: 100%;
+	margin: 0px;
+	padding-left: 5px;
+ 	position: absolute;
+    overflow: scroll;
+    bottom: 0px;
+}
+
+.chatArea a{
+	font-size: 11px;
+	font-family: icomoon;
+	color: white;
+}
+
+*:focus {
+    outline: none;
+}
+
+input {
+	border: 1px solid silver;
+	border-radius: 4px;
+	margin-top: 0px;
+	font-size: 110%;
+}
+
+input#nick {
+	float: right;
+	display: inline-block;
+	width: 25%;
+}
+
+input#message {
+	max-width: 100%;
+	display: inline-block;
+	width: 69%;
+}
+
+input:disabled{
+	background-color: #DDD;
+	color: #929292;
+}
+
+.gameArea svg {
+	position: absolute;
+}
+
+.gameArea svg rect{
+	fill: none;
+}
+
+.gameArea svg#ui line{
+	//shape-rendering: crispEdges;
+	stroke-width: 1px;
+}
+
+.gameArea svg#parallax {
+	background-color: #F07575; /* fallback color if gradients are not supported */
+	background-image: -webkit-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For Chrome and Safari */
+	background-image:    -moz-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For old Fx (3.6 to 15) */
+	background-image:     -ms-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For pre-releases of IE 10*/
+	background-image:      -o-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For old Opera (11.1 to 12.0) */ 
+	background-image:         linear-gradient(to bottom, hsl(0, 80%, 70%), #bada55); /* Standard syntax; must be last */
+}
+
+.gameArea svg#ui {
+	//pointer-events: none;
+	cursor: pointer;
+}
+.gameArea svg#players {
+	pointer-events: visible;
+}
+
+div#fps {
+	pointer-events: none;
+	position: absolute;
+	bottom: 0;
+	right: 1;
+	color: white;
+	font-family: Aldrich;
+}
+
+div#ui {
+	pointer-events: visible;
+	position: absolute;
+	top: 79.5%;
+	width: 100%;
+	text-align: center;
+}
+
+button {
+	font-family: 'Freckle face', arial, helvetica;
+	font-size: 20px;
+	font-weight: 500;
+	letter-spacing: 5px;
+	width: 200px;
+	padding: 5px;
+	color: white;
+	background: #b11200;
+	background-image:-moz-linear-gradient(#d62a2a, #b82424);
+	background-image:-ms-linear-gradient(top, #d62a2a, #b82424);
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#d62a2a), to(#b82424));
+	background-image:-webkit-linear-gradient(#d62a2a, #b82424);
+	background-image:linear-gradient(top, #d62a2a, #b82424);
+	border-radius: 4px;
+	border: none;
+}
+
+button:hover {
+	background-image:-moz-linear-gradient(#e72e2e, #c62727);
+	background-image:-ms-linear-gradient(top, #e72e2e, #c62727);
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#e72e2e), to(#c62727));
+	background-image:-webkit-linear-gradient(#e72e2e, #c62727);
+	background-image:linear-gradient(top, #e72e2e, #c62727);
+	cursor: pointer;
+}
+
+
+.flash{
+
+  -moz-animation: flash 1s ease-out;
+  -moz-animation-iteration-count: 1;
+
+  -webkit-animation: flash 1s ease-out;
+  -webkit-animation-iteration-count: 1;
+
+  -ms-animation: flash 1s ease-out;
+  -ms-animation-iteration-count: 1;
+
+}
+
+@-webkit-keyframes flash {
+    0% { background-color:none;}
+    50% { background-color:#FFC7C7;}        
+    100% {background-color:none;}
+}
+
+@-moz-keyframes flash {
+    0% { background-color:none;}
+    50% { background-color:#FFC7C7;}        
+    100% {background-color:none;}
+}
+
+@-ms-keyframes flash {
+    0% { background-color:none;}
+    50% { background-color:#FFC7C7;}        
+    100% {background-color:none;}
+}
+
+
+
